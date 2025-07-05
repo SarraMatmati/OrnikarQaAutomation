@@ -1,0 +1,50 @@
+{
+  "users": {
+    "validUser": {
+      "firstName": "Jean",
+      "lastName": "Dupont",
+      "email": "jean.dupont@example.com",
+      "phone": "0123456789"
+    },
+    "invalidUser": {
+      "firstName": "",
+      "lastName": "",
+      "email": "invalid-email",
+      "phone": "123"
+    }
+  },
+  "vehicles": {
+    "validVehicle": {
+      "brand": "Peugeot",
+      "model": "308",
+      "licensePlate": "AB-123-CD",
+      "year": "2020"
+    },
+    "invalidVehicle": {
+      "brand": "",
+      "model": "",
+      "licensePlate": "INVALID",
+      "year": ""
+    }
+  },
+  "testCases": {
+    "emailValidation": [
+      {
+        "email": "test@email.com",
+        "expectedMessage": "aucun message"
+      },
+      {
+        "email": "invalid-email",
+        "expectedMessage": "Format d'email invalide"
+      },
+      {
+        "email": "@domain.com",
+        "expectedMessage": "Format d'email invalide"
+      },
+      {
+        "email": "test@",
+        "expectedMessage": "Format d'email invalide"
+      }
+    ]
+  }
+}
