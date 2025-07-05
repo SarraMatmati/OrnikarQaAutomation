@@ -1,0 +1,77 @@
+{
+  "name": "ornikar-qa-automation",
+  "version": "1.0.0",
+  "description": "Automation tests for Ornikar insurance website",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "cy:run:firefox": "cypress run --browser firefox",
+    "cy:run:edge": "cypress run --browser edge",
+    "cy:run:headed": "cypress run --headed",
+    "cy:run:mobile": "cypress run --config viewportWidth=375,viewportHeight=667",
+    "cy:run:tablet": "cypress run --config viewportWidth=768,viewportHeight=1024",
+    "cy:run:parallel": "cypress run --record --parallel",
+    "cy:run:spec": "cypress run --spec",
+    "test:all": "npm run cy:run",
+    "test:smoke": "cypress run --spec 'cypress/e2e/features/insurance-subscription.feature' --env tags='@smoke'",
+    "test:regression": "cypress run --spec 'cypress/e2e/features/*.feature' --env tags='@regression'",
+    "test:validation": "cypress run --spec 'cypress/e2e/features/form-validation.feature' --env tags='@validation'",
+    "test:cookies": "cypress run --spec 'cypress/e2e/subscriptionModule/insurance-subscription.feature' --env tags='@cookies'",
+    "test:accept-cookies": "cypress run --spec 'cypress/e2e/subscriptionModule/insurance-subscription.feature' --env tags='@accept'",
+    "test:refuse-cookies": "cypress run --spec 'cypress/e2e/subscriptionModule/insurance-subscription.feature' --env tags='@refuse'",
+    "test:continue-without-cookies": "cypress run --spec 'cypress/e2e/subscriptionModule/insurance-subscription.feature' --env tags='@continue-sans-accepter'",
+    "test:subscription": "cypress run --spec 'cypress/e2e/subscriptionModule/insurance-subscription.feature' --env tags='@subscription'",
+    "test:complete-subscription": "cypress run --spec 'cypress/e2e/subscriptionModule/insurance-subscription.feature' --env tags='@complete'",
+    "test:partial-subscription": "cypress run --spec 'cypress/e2e/subscriptionModule/insurance-subscription.feature' --env tags='@partial'",
+    "test:field-validation": "cypress run --spec 'cypress/e2e/subscriptionModule/insurance-subscription.feature' --env tags='@field-validation'",
+    "test:error-handling": "cypress run --spec 'cypress/e2e/subscriptionModule/insurance-subscription.feature' --env tags='@error-handling'",
+    "report:generate": "npm run report:merge && npm run report:mochawesome",
+    "report:merge": "mochawesome-merge cypress/reports/mochawesome-report/*.json > cypress/reports/mochawesome-bundle.json",
+    "report:mochawesome": "marge cypress/reports/mochawesome-bundle.json --reportDir cypress/reports/mochawesome-report --inline",
+    "report:open": "open cypress/reports/mochawesome-report/index.html",
+    "clean": "rm -rf cypress/reports/* cypress/screenshots/* cypress/videos/*",
+    "lint": "eslint cypress/**/*.js",
+    "lint:fix": "eslint cypress/**/*.js --fix",
+    "prettier": "prettier --write cypress/**/*.js",
+    "prettier:check": "prettier --check cypress/**/*.js",
+    "setup": "npm install && npx cypress verify",
+    "test:dev": "cypress run --config baseUrl=https://dev.ornikar.com",
+    "test:staging": "cypress run --config baseUrl=https://staging.ornikar.com",
+    "test:prod": "cypress run --config baseUrl=https://www.ornikar.com"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/e2e/step_definitions/*.js",
+    "html": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-html-report.html"
+    },
+    "json": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-report.json"
+    }
+  },
+  "keywords": [
+    "cypress",
+    "cucumber",
+    "automation",
+    "testing",
+    "ornikar"
+  ],
+  "author": "QA",
+  "license": "MIT",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^22.2.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.5",
+    "@faker-js/faker": "^9.9.0",
+    "cypress": "^14.5.1",
+    "eslint": "^9.30.1",
+    "eslint-plugin-cypress": "^5.1.0",
+    "faker": "^5.5.3",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "prettier": "^3.6.2"
+  }
+}
